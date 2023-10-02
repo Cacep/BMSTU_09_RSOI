@@ -37,19 +37,3 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -q main.py
-
-  deploy:
-    runs-on: ubuntu-latest
-    permissions: # Required if github_deployment is set to true.
-      deployments: write
-    steps:
-        - uses: actions/checkout@v3
-        - uses: JorgeLNJunior/render-deploy@v1.4.2
-          with:
-            service_id: ${{ secrets.RENDER_SERVICE_ID }} # required
-            api_key: ${{ secrets.RENDER_API_KEY }} # required
-            clear_cache: false # Clear build cache. Optional
-            wait_deploy: false # Wait until the deploy status is successful. Warning! Free Render services can take +5 minutes to be fully deployed. Optional
-            github_deployment: false # Create a GitHub deployment. Optional
-            deployment_environment: 'kek' # GitHub deployment enviroment name. Optional
-            github_token: ${{ secrets.GITHUB_TOKEN }} # Remove if github_deployment is false. Optional
